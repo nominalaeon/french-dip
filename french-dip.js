@@ -128,31 +128,31 @@
     
     (function () {
 
-        var Site = new Initializr({}, 'Site');
-        var SiteComponent = Site.component.bind(Site);
+        var FrenchDip = new Initializr({}, 'FrenchDip');
+        var FrenchDipComponent = FrenchDip.component.bind(FrenchDip);
 
         // Collect FrenchDip elements
-        var components = getFrenchDips();
+        var components = getComponentNames();
 
         // Initialize FrenchDip Components
-        Array.prototype.forEach.call(components, SiteComponent);
+        Array.prototype.forEach.call(components, FrenchDipComponent);
 
         // LOG ERRORS
-        Site.logErrors();
+        FrenchDip.logErrors();
 
-        root.Site = Site;
+        root.FrenchDip = FrenchDip;
 
         ////////
 
-        function getFrenchDips() {
+        function getComponentNames() {
             var fdEls = document.querySelectorAll('[fdjs]');
             var fdComponents = [];
             
-            Array.prototype.forEach.call(fdEls, _getFrenchDip);
+            Array.prototype.forEach.call(fdEls, _getComponentName);
             
             return fdComponents;
 
-            function _getFrenchDip(fdEl) {
+            function _getComponentName(fdEl) {
                 var component = fdEl.getAttribute('fdjs');
 
                 if (!fdComponents.includes(component)) {
@@ -167,18 +167,18 @@
     =            Component Wrapper Factory            =
     =================================================*/
     
-    (function (Site) {
+    (function (FrenchDip) {
 
         var frenchDip = {}
 
-        var FrenchDip = function () {
+        var ComponentWrapperFactory = function () {
             this.init.apply(this, arguments);
         }
 
         // Methods
-        Object.assign(FrenchDip.prototype, getMethods());
+        Object.assign(ComponentWrapperFactory.prototype, getMethods());
 
-        Site.FrenchDip = FrenchDip;
+        FrenchDip.Wrap = ComponentWrapperFactory;
 
         function getMethods() {
             return {
@@ -213,6 +213,6 @@
             return instanceOptions;
         }
 
-    })(Site);
+    })(FrenchDip);
 
 });

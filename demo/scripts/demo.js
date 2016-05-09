@@ -12,7 +12,7 @@
 		init: init
 	});
 
-	Site.Demo = new Site.FrenchDip('.demo', instanceOptions, DemoInstance);
+	FrenchDip.Demo = new FrenchDip.Wrap('.demo', instanceOptions, DemoInstance);
 
 	function init(root, options) {
 		this.root = root;
