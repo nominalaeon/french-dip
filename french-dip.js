@@ -26,7 +26,7 @@
     
     (function (window, undefined) {
 
-        var initializr = {};
+        var _handler = {};
 
         var Initializr = function () {
             this.init.apply(this, arguments);
@@ -43,7 +43,7 @@
             return {
                 init: function (namespace, name) {
 
-                    initializr = this;
+                    _handler = this;
                     this._init = {};
 
 
@@ -60,11 +60,11 @@
 
                 component: function (name, args) {
                     if (!namespace) {
-                        return initializr._errors.push(name);
+                        return _handler._errors.push(name);
                     }
 
                     var component = namespace[name];
-                    var namespace = initializr.namespace;
+                    var namespace = _handler.namespace;
 
                     args = args || [];
                     if (Array.isArray(args)) {
@@ -72,20 +72,20 @@
                     }
 
                     if (typeof component.init !== 'function') {
-                        return initializr._errors.push(name);
+                        return _handler._errors.push(name);
                     }
 
                     component.init.apply(component, args);
                 },
 
                 logErrors: function () {
-                    if (!initializr._errors.length) {
+                    if (!_handler._errors.length) {
                     }
 
-                    Array.prototype.forEach.call(initializr._errors, carpErrors);
+                    Array.prototype.forEach.call(_handler._errors, carpErrors);
 
                     function carpErrors(err) {
-                        console.error('%s Component %s failed to load.', initializr.name, err);
+                        console.error('%s Component %s failed to load.', _handler.name, err);
                     }
                 }
             };
@@ -128,8 +128,8 @@
     
     (function () {
 
-        var FrenchDip = new Initializr({}, 'FrenchDip');
-        var FrenchDipComponent = FrenchDip.component.bind(FrenchDip);
+        var Site = new Initializr({}, 'Initializr');
+        var FrenchDipComponent = Site.component.bind(Site);
 
         // Collect FrenchDip elements
         var components = getComponentNames();
@@ -138,9 +138,9 @@
         Array.prototype.forEach.call(components, FrenchDipComponent);
 
         // LOG ERRORS
-        FrenchDip.logErrors();
+        Site.logErrors();
 
-        root.FrenchDip = FrenchDip;
+        root.Site = Site;
 
         ////////
 
@@ -167,7 +167,7 @@
     =            Component Wrapper Factory            =
     =================================================*/
     
-    (function (FrenchDip) {
+    (function (Site) {
 
         var frenchDip = {}
 
@@ -178,7 +178,7 @@
         // Methods
         Object.assign(ComponentWrapperFactory.prototype, getMethods());
 
-        FrenchDip.Wrap = ComponentWrapperFactory;
+        root.FrenchDip = ComponentWrapperFactory;
 
         function getMethods() {
             return {
@@ -213,6 +213,6 @@
             return instanceOptions;
         }
 
-    })(FrenchDip);
+    })(Site);
 
 });

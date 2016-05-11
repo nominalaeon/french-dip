@@ -1,5 +1,5 @@
 (function () {
-	
+
 	var instanceOptions = {
 		test: 'DEFAULT'
 	}
@@ -12,7 +12,7 @@
 		init: init
 	});
 
-	FrenchDip.Demo = new FrenchDip.Wrap('.demo', instanceOptions, DemoInstance);
+	FrenchDip.Demo = new FrenchDip('.demo', instanceOptions, DemoInstance);
 
 	function init(root, options) {
 		this.root = root;
