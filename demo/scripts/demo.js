@@ -1,24 +1,26 @@
 (function () {
 
-	var instanceOptions = {
-		test: 'DEFAULT'
-	}
+	'use strict';
 
-	var DemoInstance = function () {
-		this.init.apply(this, arguments);
-	};
+	FrenchDip.Demo = Demo;
 
-	Object.assign(DemoInstance.prototype, {
-		init: init
-	});
+	function Demo() {
 
-	FrenchDip.Demo = new FrenchDip('.demo', instanceOptions, DemoInstance);
+		/**
+		 * This is the specific DOM element tied to the instance of this script
+		 * @type {String}
+		 */
+		this.root;
 
-	function init(root, options) {
-		this.root = root;
-		this.options = options;
+		/**
+		 * Any data-set options defined on this instance's DOM element are passed in here
+		 * @type {Object}
+		 */
+		this.options;
 
-		console.log('DemoInstance', this.root, '\n* * ', this.options);
+		if (!this.options.test) {
+			this.options.test = 'No option defined'
+		}
 
 		var number = 
 			'<p>' +

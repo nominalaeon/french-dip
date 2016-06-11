@@ -1,218 +1,127 @@
-/**
- * FrenchDip.js v0.0.1
- *
- * Register your custom plug-ins, target plug-in elements, and create unique instances for each of all of them.
- * 
- * MIT License
- */
-
 (function (root, factory) {
 
-    if (typeof define === 'function' && define.amd) {
-        define(['_'], factory(root));
-    } else if (typeof exports === 'object') {
-        module.exports = factory(require('_'));
-    } else {
-        root.frenchDip = factory(root, root._);
+  return factory(root);
+
+})(this, function (root) {
+
+  /**
+   * 
+   * A simple framework to create components quickly and consistently
+   *
+   * @module french-dip
+   *
+   * @name FrenchDipJS
+   * @version 0.0.2
+   * @License MIT License
+   * 
+   */
+
+  'use strict';
+
+  var errors = [];
+
+  root.FrenchDip = FrenchDip;
+
+  _onDomReady(initializeComponents);
+
+  /**
+   * Constructs a new instance of the user's Classes for each instance of a Class's defined selector
+   * @class
+   * 
+   * @param {String} selector Class name of the elements the user's Class needs to effect
+   * @param {Object} options A set of default options that will be over-ridden by an data attribute options on the selector's element
+   * @param {Object} Component Name of the user's Class
+   */
+  function FrenchDip(selector, options, Component) {
+
+    var elements = document.querySelectorAll(selector);
+
+    Array.prototype.forEach.call(elements, initComponent);
+
+    function initComponent(el) {
+      var instanceOptions = Object.assign({}, options, _parseInstanceOptions(el, options));
+
+      Component.prototype.root = el;
+      Component.prototype.options = instanceOptions;
+
+      new Component();
+    }
+  }
+
+  /**
+   * DOM-Ready function that envokes the user's Classes
+   */
+  function initializeComponents() {
+    var components = _getFrenchDipComponents();
+
+    // Initialize FrenchDip'ed Components
+    Object.keys(components).forEach(function (name) {
+      let selector = components[name];
+
+      if (typeof FrenchDip[name] !== 'function') {
+        return errors.push(name);
+      }
+
+      new FrenchDip(selector, {}, FrenchDip[name]);
+    });
+
+    _logErrors();
+  }
+
+  function _getFrenchDipComponents() {
+    var fdEls = document.querySelectorAll('[frenchdip]');
+    var fdComponents = {};
+
+    Array.prototype.forEach.call(fdEls, _getComponentAttrs);
+
+    return fdComponents;
+
+    function _getComponentAttrs(fdEl) {
+      var attrs = fdEl.getAttribute('frenchdip').split(' ');
+      var name = attrs[0];
+      var selector = attrs[1];
+
+      if (!name || !selector) {
+        return errors.push(name);
+      }
+
+      fdComponents[name] = '.' + selector;
+    }
+  }
+
+  function _logErrors() {
+    if (!errors.length) {
+      return;
     }
 
-})(typeof global !== "undefined" ? global : this.window || this.global, function (root) {
+    Array.prototype.forEach.call(errors, carpErrors);
 
-    'use strict';
+    function carpErrors(err) {
+      console.warn('%s Component failed to load.', err);
+    }
+  }
 
-    /*==================================
-    =            Initializr            =
-    ==================================*/
-    
-    (function (window, undefined) {
+  function _onDomReady(fn) {
+    if (document.readyState !== 'loading') {
+      fn();
+    } else {
+      document.addEventListener('DOMContentLoaded', fn);
+    }
+  }
 
-        var _handler = {};
+  function _parseInstanceOptions(el, defaultOptions) {
+    var instanceOptions = {};
 
-        var Initializr = function () {
-            this.init.apply(this, arguments);
-        };
+    for (var key in el.dataset) {
+      if (!hasOwnProperty.call(el.dataset, key)) {
+        return;
+      }
 
-        // Methods
-        Object.assign(Initializr.prototype, getMethods());
-        // Properties
-        Object.defineProperties(Initializr.prototype, getProperties());
-
-        root.Initializr = Initializr;
-
-        function getMethods() {
-            return {
-                init: function (namespace, name) {
-
-                    _handler = this;
-                    this._init = {};
+      instanceOptions[key] = el.dataset[key];
+    }
 
 
-                    if (typeof namespace === 'object') {
-                        this.namespace = namespace;
-                    } else {
-                        throw new Error('no namespace specified');
-                    }
-
-                    this.name = name;
-
-                    return this;
-                },
-
-                component: function (name, args) {
-                    if (!namespace) {
-                        return _handler._errors.push(name);
-                    }
-
-                    var component = namespace[name];
-                    var namespace = _handler.namespace;
-
-                    args = args || [];
-                    if (Array.isArray(args)) {
-                        args = [args];
-                    }
-
-                    if (typeof component.init !== 'function') {
-                        return _handler._errors.push(name);
-                    }
-
-                    component.init.apply(component, args);
-                },
-
-                logErrors: function () {
-                    if (!_handler._errors.length) {
-                    }
-
-                    Array.prototype.forEach.call(_handler._errors, carpErrors);
-
-                    function carpErrors(err) {
-                        console.error('%s Component %s failed to load.', _handler.name, err);
-                    }
-                }
-            };
-        }
-
-        function getProperties() {
-            return {
-                _errors: {
-                    get: function () {
-                        return this._init._errors || [];
-                    },
-                    set: function (_errors) {
-                        this._init._errors = _errors;
-                    }
-                },
-                name: {
-                    get: function () {
-                        return this._init.name || '';
-                    },
-                    set: function (name) {
-                        this._init.name = name;
-                    }
-                },
-                namespace: {
-                    get: function () {
-                        return this._init.namespace || {};
-                    },
-                    set: function (namespace) {
-                        this._init.namespace = namespace;
-                    }
-                }
-            };
-        }
-
-    })(this);
-    
-    /*==============================
-    =            InitJS            =
-    ==============================*/
-    
-    (function () {
-
-        var Site = new Initializr({}, 'Initializr');
-        var FrenchDipComponent = Site.component.bind(Site);
-
-        // Collect FrenchDip elements
-        var components = getComponentNames();
-
-        // Initialize FrenchDip Components
-        Array.prototype.forEach.call(components, FrenchDipComponent);
-
-        // LOG ERRORS
-        Site.logErrors();
-
-        root.Site = Site;
-
-        ////////
-
-        function getComponentNames() {
-            var fdEls = document.querySelectorAll('[fdjs]');
-            var fdComponents = [];
-            
-            Array.prototype.forEach.call(fdEls, _getComponentName);
-            
-            return fdComponents;
-
-            function _getComponentName(fdEl) {
-                var component = fdEl.getAttribute('fdjs');
-
-                if (!fdComponents.includes(component)) {
-                    fdComponents.push(component);
-                }
-            }
-        }
-
-    })();
-    
-    /*=================================================
-    =            Component Wrapper Factory            =
-    =================================================*/
-    
-    (function (Site) {
-
-        var frenchDip = {}
-
-        var ComponentWrapperFactory = function () {
-            this.init.apply(this, arguments);
-        }
-
-        // Methods
-        Object.assign(ComponentWrapperFactory.prototype, getMethods());
-
-        root.FrenchDip = ComponentWrapperFactory;
-
-        function getMethods() {
-            return {
-                init: function (selector, defaultOptions, instanceObject) {
-                    frenchDip = this;
-
-
-                    var fdEls = document.querySelectorAll(selector);
-
-                    Array.prototype.forEach.call(fdEls, dip);
-                    
-                    function dip(fdEl) {
-                        var instanceOptions = Object.assign({}, defaultOptions, _parseOptions(fdEl, defaultOptions));
-                        new instanceObject(fdEl, instanceOptions);
-                    }
-                }
-            }
-        }
-
-        function _parseOptions(fdEl, defaultOptions) {
-            var instanceOptions = {};
-
-            for (var key in fdEl.dataset) {
-                if (!hasOwnProperty.call(fdEl.dataset, key)) {
-                    return;
-                }
-
-                instanceOptions[key] = fdEl.dataset[key];
-            }
-
-
-            return instanceOptions;
-        }
-
-    })(Site);
+    return instanceOptions;
+  }
 
 });
