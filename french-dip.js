@@ -6,7 +6,7 @@
 
   /**
    * 
-   * A simple framework to create components quickly and consistently
+   * A flexible, light-weight framework for creating components
    *
    * @module french-dip
    *
@@ -112,14 +112,9 @@
   function _parseInstanceOptions(el, defaultOptions) {
     var instanceOptions = {};
 
-    for (var key in el.dataset) {
-      if (!hasOwnProperty.call(el.dataset, key)) {
-        return;
-      }
-
+    Object.keys(el.dataset).forEach(function (key) {
       instanceOptions[key] = el.dataset[key];
-    }
-
+    });
 
     return instanceOptions;
   }

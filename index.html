@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>French Dip Test</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,400italic,600italic,800italic,700italic,300italic,300' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="demo/styles/bootstrap-4-flex.css">
+
+    <!-- HighlightJS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/monokai.min.css">
+
+    <style type="text/css" media="screen">
+        body {
+            background-color: #333;
+            box-sizing: border-box;
+            color: #fcfcfc;
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+        }
+        h1 {
+            font-family: 'Lobster', 'Open Sans', Helvetica, Arial, sans-serif;
+        }
+        h2 {
+            font-weight: 800;
+        }
+        h2, h3 {
+            color: #fcfcfc;
+        }
+        h3 {
+            font-style: italic;
+        }
+        h3, h4 {
+            font-weight: 600;
+        }
+        .demo-wrapper {
+            margin: 0;
+            padding: 0 2rem;
+            max-width: none;
+        }
+        .demo-wrapper .row {
+            margin: 0 -2rem;
+        }
+        .demo {
+            margin-bottom: 2rem;
+            padding: 0 2rem;
+            vertical-align: top;
+        }
+        .demo pre {
+            font-size: 80%;
+            margin: 0;
+        }
+        .demo .media-left {
+            background-color: #fff;
+            padding: .4rem;
+        }
+        .demo .row {
+            margin: 0;
+        }
+        .demo--clickable:hover {
+            background-color: #ccc;
+            cursor: pointer;
+        }
+        .demo--code {
+            /* padding: 0; */
+        }
+        .jumbotron {
+            background-color: #222;
+            border-bottom: 2px solid #000;
+            border-radius: 0;
+        }
+        .jumbotron h1 {
+            margin-bottom: 2rem;
+        }
+        .jumbotron .container {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-4 hidden-sm-down">FrenchDipJS</h1>
+            <h1 class="display-1 hidden-md-up">FrenchDipJS</h1>
+
+            <p class="lead">A flexible, light-weight framework for creating components</p>
+            
+            <p>
+                <a class="btn btn-danger-outline btn-sm"
+                href="https://github.com/nominalaeon/french-dip/archive/develop.zip"
+                role="button">Download (2.8KB)</a>
+                <a class="btn btn-danger btn-sm"
+                href="https://github.com/nominalaeon/french-dip"
+                role="button">View on Github</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="demo-wrapper container">
+        
+        <!-- vanilla JavaScript -->
+        
+        <h2>Examples with vanilla JavaScript</h2>
+
+        <hr/>
+
+        <h3>HTML</h3>
+
+        <div class="row">
+
+            <div class="demo demo--js media col-lg-6 col-xs-12"
+                frenchdip="DemoJS demo--js"
+                data-heading="nananana Batman"
+                data-new-src="demo/images/batman.png"
+                data-interval="3000">
+                <div class="media-left">
+                    <img src="demo/images/bruce-wayne.png"/>
+                </div>
+                <div class="media-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <b class="heading media-heading">Bruce Wayne</b>
+                            <p><small>...for 3 seconds anyway</small></p>
+                        </div>
+                        <div class="col-xs-12">                       
+<pre><code>&lt;div class="demo--js"
+    frenchdip="DemoJS demo--js"
+    data-heading="nananana Batman"
+    data-new-src="batman.png"
+    data-interval="3000">
+    &lt;img src="bruce-wayne.png"/>
+    &lt;p class="heading">Bruce Wayne&lt;/p>
+&lt;/div></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo demo--js media col-lg-6 col-xs-12"
+                frenchdip="DemoJS demo--js"
+                data-heading="Batman Beyond"
+                data-new-src="demo/images/batman-beyond.png">
+                <div class="media-left">
+                    <img src="demo/images/bruce-wayne.png"/>
+                </div>
+                <div class="media-body">
+                    <div class="row">
+                        <div class="col-xs-12">  
+                            <b class="heading media-heading">Bruce Wayne</b>
+                            <p><small>Changes once</small></p>
+                        </div>
+                        <div class="col-xs-12">                       
+<pre><code>&lt;div class="demo--js"
+    frenchdip="DemoJS demo--js"
+    data-heading="Batman Beyond"
+    data-new-src="batman-beyond.png">
+    
+    &lt;img src="bruce-wayne.png"/>
+    &lt;p class="heading">Bruce Wayne&lt;/p>
+&lt;/div></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>JavaScript Class pattern</h3>
+
+        <div class="row">
+            <div class="demo demo--code col-xs-12">
+
+<pre><code>function DemoJS() {
+    var heading = this.root.querySelectorAll('h4')[0],
+        img = this.root.querySelectorAll('img')[0],
+        newHead = this.options.heading,
+        newSrc = this.options.newSrc,
+        oldHead, oldSrc;
+
+    if (this.options.interval) {
+        runInterval(this.options.interval);
+    } else {
+        runTimeout();
+    }
+
+    function runInterval(interval) {
+        setInterval(swapAssets, interval);
+    }
+    function runTimeout() {
+        setTimeout(swapAssets, 1000);
+    }
+    function swapAssets() {
+        oldHead = heading.innerHTML;
+        oldSrc = img.getAttribute('src');
+        heading.innerHTML = newHead;
+        img.setAttribute('src', newSrc);
+        newHead = oldHead;
+        newSrc = oldSrc;
+    }
+}
+
+/** Register Class with FrenchDipJS */
+FrenchDip.DemoJS = DemoJS;</code></pre>
+
+            </div>
+        </div>
+
+        <!-- ES6 -->
+        
+        <h2>Examples with ES6</h2>
+
+        <hr/>
+
+        <h3>HTML</h3>
+
+        <div class="row">
+
+            <div class="demo demo--es6 media col-lg-6 col-xs-12"
+                frenchdip="DemoES6 demo--es6"
+                data-heading="Batman"
+                data-new-src="demo/images/batman.png">
+                <div class="media-left">
+                    <img src="demo/images/bruce-wayne.png"/>
+                </div>
+                <div class="media-body">
+                    <div class="row">
+                        <div class="col-xs-12">  
+                            <b class="heading media-heading">Bruce Wayne</b>
+                            <p><small>Changes once</small></p>
+                        </div>
+                        <div class="col-xs-12">                       
+<pre><code>&lt;div class="demo--es6"
+    frenchdip="DemoES6 demo--es6"
+    data-heading="Batman"
+    data-new-src="batman.png">
+    &lt;img src="bruce-wayne.png"/>
+    &lt;p class="heading">Bruce Wayne&lt;/p>
+&lt;/div></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo demo--es6 media col-lg-6 col-xs-12"
+                frenchdip="DemoES6 demo--es6"
+                data-heading="Batman"
+                data-new-src="demo/images/fireproof.png">
+                <div class="media-left">
+                    <img src="demo/images/bruce-wayne.png"/>
+                </div>
+                <div class="media-body">
+                    <div class="row">
+                        <div class="col-xs-12">  
+                            <b class="heading media-heading">Bruce Wayne</b>
+                            <p><small>Changes once</small></p>
+                        </div>
+                        <div class="col-xs-12">                       
+<pre><code>&lt;div class="demo--es6"
+    frenchdip="DemoES6 demo--es6"
+    data-heading="Batman"
+    data-new-src="fireproof.png">
+    &lt;img src="bruce-wayne.png"/>
+    &lt;p class="heading">Bruce Wayne&lt;/p>
+&lt;/div></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <h3>ES6 Class</h3>
+
+        <div class="row">
+            <div class="demo demo--code col-xs-12">
+
+<pre><code>class DemoES6 {
+    constructor() {
+        this.heading = this.root.querySelectorAll('.heading')[0];
+        this.img = this.root.querySelectorAll('img')[0];
+        this.options = this.options;
+
+        setTimeout(() => {
+            this.swapAssets();
+        }, 1000);
+    }
+
+    swapAssets() {
+        this.heading.innerHTML = this.options.heading;
+        this.img.setAttribute('src', this.options.newSrc);
+    }
+}
+
+/** Register Class with FrenchDipJS */
+FrenchDip.DemoES6 = DemoES6;</code></pre>
+
+            </div>
+        </div>
+
+        <!-- jQuery -->
+
+        <h2>Examples with jQuery</h2>
+
+        <hr/>
+
+        <h3>HTML</h3>
+
+        <div class="row">
+
+            <div class="demo demo--clickable demo--jquery media col-lg-6 col-xs-12"
+                frenchdip="DemoJQ demo--jquery"
+                data-new-src="demo/images/batman.png">
+                <div class="media-left">
+                    <img src="demo/images/bruce-wayne.png"/>
+                    <p style="margin: 0;"><small>jQuery</small></p>
+                </div>
+                <div class="media-body">
+                    <div class="row">
+                        <div class="col-xs-12">  
+                            <b class="heading media-heading">Bruce Wayne</b>
+                            <p><small>For a dark knight, click here!</small></p>
+                        </div>
+                        <div class="col-xs-12">                       
+<pre><code>&lt;div class="demo--jquery"
+    renchdip="DemoJQ demo--jquery"
+    data-new-src="demo/images/batman.png">
+    &lt;img src="bruce-wayne.png"/>
+    &lt;p class="heading">Bruce Wayne&lt;/p>
+&lt;/div></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>JQuery</h3>
+
+        <div class="row">
+            <div class="demo demo--code col-xs-12">
+
+<pre><code>var DemoJQ = DemoJQ;
+
+$.extend(DemoJQ.prototype, {
+    heading: 'Batman via $.onClick'
+});
+
+/** Register Class with FrenchDipJS */
+FrenchDip.DemoJQ = DemoJQ; // Register DemoJQ Class with FrenchDip
+
+function DemoJQ() {
+    this.$root = $(this.root);
+    this.$heading = $(this.$root.find('.heading').get(0));
+    this.$img = $(this.$root.find('img').get(0));
+
+    this.$root.on('click', $.proxy(swapAssets, this));
+}
+
+function swapAssets() {
+    this.$heading.html(this.heading);
+    this.$img.attr('src', this.options.newSrc);
+    this.$root.off();
+}</code></pre>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.0.0.js"
+        integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo="
+        crossorigin="anonymous"
+        type="text/javascript" charset="utf-8"></script>
+
+    <!-- HighlightJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"
+        type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        hljs.initHighlightingOnLoad();
+    </script>
+
+    <!-- French Dip -->
+    <script src="french-dip.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- App Components -->
+    <script src="demo/scripts/demo.js" type="text/javascript" charset="utf-8"></script>
+
+</body>
+</html>

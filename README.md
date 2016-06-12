@@ -1,28 +1,18 @@
 # FrenchDipJS
 
-A flexible framework to create components quickly and consistently
+A flexible, light-weight framework for creating components
 
 ## Getting Started
 
 Download [FrenchDipJS](https://raw.github.com/nominalaeon/french-dip/french-dip.js)
 
-Include before your app JavaScript
-
-```html
-<script src="dist/french-dip.js"></script>
-```
-
 ## Usage
-
-FrenchDipJS is a vanilla JS application with no library dependencies.
 
 _(Coming soon)_
 
 ### Examples
 
 _(Coming soon)_
-
-* * *
 
 ### Contributing
 
