@@ -1,18 +1,10 @@
 # FrenchDipJS
 
-A flexible, light-weight framework for creating components
+A flexible, light-weight module for creating custom components
 
-## Getting Started
+## Demo
 
-Download [FrenchDipJS](https://raw.github.com/nominalaeon/french-dip/french-dip.js)
-
-## Usage
-
-_(Coming soon)_
-
-### Examples
-
-_(Coming soon)_
+[http://nominalaeon.github.io/french-dip/](http://nominalaeon.github.io/french-dip/)
 
 ### Contributing
 

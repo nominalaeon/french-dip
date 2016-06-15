@@ -6455,3 +6455,146 @@ a.bg-danger:hover {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+/** FrenchDipJS */
+
+body {
+  background-color: #FFF4DC;
+  box-sizing: border-box;
+  color: #A65B2F;
+  font-family: 'Arimo', Helvetica, Arial, sans-serif;
+  line-height: 1.6em;
+}
+h1 {
+  font-family: 'Lobster', 'Arimo', Helvetica, Arial, sans-serif;
+}
+h2 {
+  border-bottom: .2rem solid #FCE9C0;
+  padding-top: 1rem;
+}
+h2, h3 {
+  color: #A65B2F;
+  margin: 0;
+  margin-bottom: 2rem;
+}
+h3 {
+  font-weight: 300;
+}
+h4 {
+  font-style: italic;
+}
+.btn-primary {
+  background-color: #f9d467;
+  border-color: #f9d467;
+  color: #2F8EA6;
+}
+.btn-primary-outline {
+  border-color: #f9d467;
+  color: #f9d467;
+  margin-right: 1rem;
+}
+.btn-primary:hover,
+.btn-primary-outline:hover {
+  background-color: #f6b319;
+  border-color: #f6b319;
+  color: #fff;
+}
+.container {
+  margin: 0;
+  padding: 2rem 4rem;
+  max-width: none !important;
+}
+.content-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.demo-wrapper {
+  max-width: none;
+}
+.demo {
+  margin-bottom: 2rem;
+  overflow: hidden;
+  padding: 0;
+  vertical-align: top;
+}
+pre {
+  border-top: .2rem solid #A65B2F;
+  font-size: 75%;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-doctag, .hljs-title, .hljs-section, .hljs-type, .hljs-selector-id {
+  font-weight: 200;
+}
+.demo .media-left {
+  padding: .4rem 0;
+  text-align: center;
+  min-width: 140px;
+}
+.demo .media-body {
+  background-color: #FCE9C0;
+  padding-top: 1rem;
+}
+.demo .media-body p {
+  padding: 0 1rem;
+}
+.demo .row {
+  margin: 0;
+}
+.demo--clickable:hover,
+.demo--clickable:hover .media-body {
+  background-color: #F9D467;
+  cursor: pointer;
+}
+.demo--code {
+  margin-bottom: 4rem;
+}
+.example {
+  background-color: #2F8EA6;
+  border-bottom: .2rem solid #07495a;
+  color: #fff;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+.jumbotron {
+  background-color: #2F8EA6;
+  border-bottom: .2rem solid #07495a;
+  border-radius: 0;
+  color: #fff;
+  padding: 0;
+}
+.jumbotron::before {
+  background-color: #469bb0;
+}
+.jumbotron::after {
+  background-color: #297c91;
+}
+.jumbotron h1 {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+.nav {
+  border-bottom: 2px solid #f9d467;
+  margin-bottom: 2rem;
+}
+.nav-item {
+  display: inline-block;
+  margin-right: 2rem;
+}
+.nav-item a {
+  color: #2f8ea6;
+  font-weight: 600;
+  padding-bottom: .2rem;
+}
+.nav-item a:hover {
+  color: #ccc;
+  text-decoration: underline;
+}
+.row {
+  margin: 0;
+}
+@media (max-width: 767px) {
+  .container {
+      padding: 1rem;
+  }
+}

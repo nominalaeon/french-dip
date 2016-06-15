@@ -1,3 +1,16 @@
+/*=========================================
+=            YourClass Example            =
+=========================================*/
+
+(function () {
+	function YourClass() {
+	    this.root.innerHTML = Math.random();
+	}
+
+	FrenchDip.YourClass = YourClass;
+})();
+
+
 /*==========================================
 =            Vanilla JS Example            =
 ==========================================*/
