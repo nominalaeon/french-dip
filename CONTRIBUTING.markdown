@@ -1,14 +1,4 @@
-# FrenchDipJS
-
-A flexible, light-weight module for creating custom components
-
-## Docs & Demo
-
-[http://nominalaeon.github.io/french-dip/](http://nominalaeon.github.io/french-dip/)
-
-## Contributing
-
-### Submitting issues
+## Submitting issues
 
 ### Test case required
 
@@ -23,15 +13,10 @@ A flexible, light-weight module for creating custom components
 Providing a test case is the best way to get your issue addressed. Without a test case; your issue may be closed.
 You must provide a clear and simple way to reproduce the issue with the provided fiddle.
 
-### Pull requests
+## Pull requests
 
 **Contributions are welcome**! That said, please *be prepared to edit* your pull request at request, and provide a jsFiddle of your fork working. Failure to do so will result in your pull request being closed.
 
 *Please note that while FrenchDip is open source, this is still my baby, and by submitting a pull request you are authorizing me to edit or modify it in any way shape or form. You will be listed in Github as a contributor, but I have and will continue to steer the direction of this project.*
 
 > Thanks to [Ken Wheeler](http://kenwheeler.github.io/) for letting me steal his contributor guidelines!
-
-## License
-
-Copyright (c) 2016 Noah Rodenbeek  
-Licensed under the MIT license.
