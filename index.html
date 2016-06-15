@@ -1,114 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>French Dip Test</title>
 
     <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,400italic,600italic,800italic,700italic,300italic,300' rel='stylesheet' type='text/css'>
-
-    <!-- Bootstrap 4 -->
-    <link rel="stylesheet" href="demo/styles/bootstrap-4-flex.css">
+    <link href='https://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
     <!-- HighlightJS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/monokai.min.css">
 
-    <style type="text/css" media="screen">
-        body {
-            background-color: #333;
-            box-sizing: border-box;
-            color: #fcfcfc;
-            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-        }
-        h1 {
-            font-family: 'Lobster', 'Open Sans', Helvetica, Arial, sans-serif;
-        }
-        h2 {
-            font-weight: 800;
-        }
-        h2, h3 {
-            color: #fcfcfc;
-        }
-        h3 {
-            font-style: italic;
-        }
-        h3, h4 {
-            font-weight: 600;
-        }
-        .demo-wrapper {
-            margin: 0;
-            padding: 0 2rem;
-            max-width: none;
-        }
-        .demo-wrapper .row {
-            margin: 0 -2rem;
-        }
-        .demo {
-            margin-bottom: 2rem;
-            padding: 0 2rem;
-            vertical-align: top;
-        }
-        .demo pre {
-            font-size: 80%;
-            margin: 0;
-        }
-        .demo .media-left {
-            background-color: #fff;
-            padding: .4rem;
-        }
-        .demo .row {
-            margin: 0;
-        }
-        .demo--clickable:hover {
-            background-color: #ccc;
-            cursor: pointer;
-        }
-        .demo--code {
-            /* padding: 0; */
-        }
-        .jumbotron {
-            background-color: #222;
-            border-bottom: 2px solid #000;
-            border-radius: 0;
-        }
-        .jumbotron h1 {
-            margin-bottom: 2rem;
-        }
-        .jumbotron .container {
-            margin: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="demo/styles/app.css">
+
 </head>
 
 <body>
 
     <div class="jumbotron">
         <div class="container">
-            <h1 class="display-4 hidden-sm-down">FrenchDipJS</h1>
-            <h1 class="display-1 hidden-md-up">FrenchDipJS</h1>
+            <div class="row">
+                <div class="col-xl-6 col-xl-offset-3 col-lg-8 col-lg-offset-2 ol-xs-12">
+                    <h1 class="display-4 hidden-sm-down">FrenchDipJS</h1>
+                    <h1 class="display-1 hidden-md-up">FrenchDipJS</h1>
 
-            <p class="lead">A flexible, light-weight framework for creating components</p>
-            
-            <p>
-                <a class="btn btn-danger-outline btn-sm"
-                href="https://github.com/nominalaeon/french-dip/archive/develop.zip"
-                role="button">Download (2.8KB)</a>
-                <a class="btn btn-danger btn-sm"
-                href="https://github.com/nominalaeon/french-dip"
-                role="button">View on Github</a>
-            </p>
+                    <p class="lead">A flexible, light-weight module for creating custom components</p>
+                    
+                    <p>
+                        <a class="btn btn-primary-outline btn-sm"
+                        href="https://github.com/nominalaeon/french-dip/archive/develop.zip"
+                        role="button">Download (2.8KB)</a>
+                        <a class="btn btn-primary btn-sm"
+                        href="https://github.com/nominalaeon/french-dip"
+                        role="button">View on Github</a>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-xl-offset-3 col-lg-8 col-lg-offset-2 ol-xs-12" style="padding: 0;">
+
+                <p class="lead">Not every project needs the full arsenol of a front-end framework.</p>
+
+                <p><i>Performance</i> can suffer from loading all of those unused bits of JavaScript.<br/>
+                <i>Development</i> can slow from steep learning curves.</p>
+
+                <p>A project that<br/>
+                -&nbsp;has little dynamic content to display <i>OR</i><br/>
+                -&nbsp;is built on a back-end templating solution <span class="hidden-sm-down">(PHP, JavaServer Pages, ASP.NET, etc.)</span><br/>
+                may be biting off more front-end framework than it will ever need to chew.</p>
+
+                <p>Chances are, a framework is loaded simply to offer a way to add custom functionality. This is where FrenchDipJS shines like a freshly baked baguette.</p>
+
+                <h2 id="what">What FrenchDip</h2>
+
+                <p>FrenchDip is a component wrapper that ties JavaScript classes defined in your project to instances of assigned DOM elements. This allows you to basically build your own framework.</p>
+
+                <h2 id="how">How FrenchDip</h2>
+
+                <div class="container" style="padding: 0;">
+                    <div class="row" style="padding: 0;">
+
+                        <div class="example col-xs-12">
+                            <p>Displays two different numbers</p>
+                            <div class="your-class-name"
+                                frenchdip="YourClass your-class-name"></div>
+                            <div class="your-class-name"
+                                frenchdip="YourClass your-class-name"></div>
+                        </div>
+
+                        <div class="col-md-6 col-xs-12" style="padding: 0; overflow-x: auto;">
+                            <p><b>HTML</b><br/>
+                            Use the "frenchdip" attribute to declare the JavaScript Class to be envoked and then the HTML classname it affects.</p>
+<pre><code class="html">&lt;p>Displays two different numbers&lt;/p>
+
+&lt;div class="your-class-name"
+    frenchdip="YourClass your-class-name">&lt;/div>
+
+&lt;div class="your-class-name"
+    frenchdip="YourClass your-class-name">&lt;/div></code></pre>
+                        </div>
+
+                        <div class="col-md-6 col-xs-12" style="padding-right: 0; overflow-x: auto;">
+                            <p><b>JavaScript</b><br/>
+                            Create a JavaScript Class and assign it to the global FrenchDip object to register it with FrenchDipJS.</p>
+<pre><code class="javascript">function YourClass() {
+    this.root.innerHTML = Math.random();
+}
+
+FrenchDip.YourClass = YourClass;</code></pre>
+                        </div>
+
+                        <p>FrenchDipJS collects registered DOM elements, forEach's through them, and envokes a new instance of your class for each one.</p>
+                    </div>
+                </div>
+
+                <h2 id="usage">Install</h2>
+
+                <h2 id="setup">Setup</h2>
+                
+                <h2 id="usage">Usage</h2>
+            
+            </div>
+        </div>
+    </div>
+
+    <!--====================================
+    =            Usage Examples            =
+    =====================================-->
+
     <div class="demo-wrapper container">
-        
+
+        <h2 id="usage-examples">Usage Examples</h2>
+
         <!-- vanilla JavaScript -->
         
-        <h2>Examples with vanilla JavaScript</h2>
-
-        <hr/>
-
-        <h3>HTML</h3>
+        <h3>Examples with vanilla JavaScript</h3>
 
         <div class="row">
 
@@ -121,12 +131,9 @@
                     <img src="demo/images/bruce-wayne.png"/>
                 </div>
                 <div class="media-body">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <b class="heading media-heading">Bruce Wayne</b>
-                            <p><small>...for 3 seconds anyway</small></p>
-                        </div>
-                        <div class="col-xs-12">                       
+                    <p><b class="heading media-heading">Bruce Wayne</b></p>
+                    <p><small>...for 3 seconds anyway</small></p>
+
 <pre><code>&lt;div class="demo--js"
     frenchdip="DemoJS demo--js"
     data-heading="nananana Batman"
@@ -135,8 +142,6 @@
     &lt;img src="bruce-wayne.png"/>
     &lt;p class="heading">Bruce Wayne&lt;/p>
 &lt;/div></code></pre>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -148,32 +153,27 @@
                     <img src="demo/images/bruce-wayne.png"/>
                 </div>
                 <div class="media-body">
-                    <div class="row">
-                        <div class="col-xs-12">  
-                            <b class="heading media-heading">Bruce Wayne</b>
-                            <p><small>Changes once</small></p>
-                        </div>
-                        <div class="col-xs-12">                       
+                    <p><b class="heading media-heading">Bruce Wayne</b></p>
+                    <p><small>Changes once</small></p>
+
 <pre><code>&lt;div class="demo--js"
     frenchdip="DemoJS demo--js"
     data-heading="Batman Beyond"
     data-new-src="batman-beyond.png">
-    
+
     &lt;img src="bruce-wayne.png"/>
     &lt;p class="heading">Bruce Wayne&lt;/p>
 &lt;/div></code></pre>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
 
-        <h3>JavaScript Class pattern</h3>
-
         <div class="row">
             <div class="demo demo--code col-xs-12">
 
-<pre><code>function DemoJS() {
+<pre><code>/** JavaScript Class pattern */
+
+function DemoJS() {
     var heading = this.root.querySelectorAll('h4')[0],
         img = this.root.querySelectorAll('img')[0],
         newHead = this.options.heading,
@@ -210,11 +210,7 @@ FrenchDip.DemoJS = DemoJS;</code></pre>
 
         <!-- ES6 -->
         
-        <h2>Examples with ES6</h2>
-
-        <hr/>
-
-        <h3>HTML</h3>
+        <h3>Examples with ES6</h3>
 
         <div class="row">
 
@@ -226,12 +222,9 @@ FrenchDip.DemoJS = DemoJS;</code></pre>
                     <img src="demo/images/bruce-wayne.png"/>
                 </div>
                 <div class="media-body">
-                    <div class="row">
-                        <div class="col-xs-12">  
-                            <b class="heading media-heading">Bruce Wayne</b>
-                            <p><small>Changes once</small></p>
-                        </div>
-                        <div class="col-xs-12">                       
+                    <p><b class="heading media-heading">Bruce Wayne</b></p>
+                    <p><small>Changes once</small></p>
+
 <pre><code>&lt;div class="demo--es6"
     frenchdip="DemoES6 demo--es6"
     data-heading="Batman"
@@ -239,8 +232,6 @@ FrenchDip.DemoJS = DemoJS;</code></pre>
     &lt;img src="bruce-wayne.png"/>
     &lt;p class="heading">Bruce Wayne&lt;/p>
 &lt;/div></code></pre>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -252,12 +243,9 @@ FrenchDip.DemoJS = DemoJS;</code></pre>
                     <img src="demo/images/bruce-wayne.png"/>
                 </div>
                 <div class="media-body">
-                    <div class="row">
-                        <div class="col-xs-12">  
-                            <b class="heading media-heading">Bruce Wayne</b>
-                            <p><small>Changes once</small></p>
-                        </div>
-                        <div class="col-xs-12">                       
+                    <p><b class="heading media-heading">Bruce Wayne</b></p>
+                    <p><small>Changes once</small></p>
+
 <pre><code>&lt;div class="demo--es6"
     frenchdip="DemoES6 demo--es6"
     data-heading="Batman"
@@ -265,19 +253,16 @@ FrenchDip.DemoJS = DemoJS;</code></pre>
     &lt;img src="bruce-wayne.png"/>
     &lt;p class="heading">Bruce Wayne&lt;/p>
 &lt;/div></code></pre>
-                        </div>
-                    </div>
                 </div>
             </div>
 
         </div>
 
-        <h3>ES6 Class</h3>
-
         <div class="row">
             <div class="demo demo--code col-xs-12">
 
-<pre><code>class DemoES6 {
+<pre><code>/** ES6 Class */
+class DemoES6 {
     constructor() {
         this.heading = this.root.querySelectorAll('.heading')[0];
         this.img = this.root.querySelectorAll('img')[0];
@@ -302,11 +287,7 @@ FrenchDip.DemoES6 = DemoES6;</code></pre>
 
         <!-- jQuery -->
 
-        <h2>Examples with jQuery</h2>
-
-        <hr/>
-
-        <h3>HTML</h3>
+        <h3>Examples with jQuery</h3>
 
         <div class="row">
 
@@ -315,33 +296,27 @@ FrenchDip.DemoES6 = DemoES6;</code></pre>
                 data-new-src="demo/images/batman.png">
                 <div class="media-left">
                     <img src="demo/images/bruce-wayne.png"/>
-                    <p style="margin: 0;"><small>jQuery</small></p>
                 </div>
                 <div class="media-body">
-                    <div class="row">
-                        <div class="col-xs-12">  
-                            <b class="heading media-heading">Bruce Wayne</b>
-                            <p><small>For a dark knight, click here!</small></p>
-                        </div>
-                        <div class="col-xs-12">                       
+                    <p><b class="heading media-heading">Bruce Wayne</b></p>
+                    <p><small>For a dark knight, click here!</small></p>
+
 <pre><code>&lt;div class="demo--jquery"
-    renchdip="DemoJQ demo--jquery"
+    frenchdip="DemoJQ demo--jquery"
     data-new-src="demo/images/batman.png">
     &lt;img src="bruce-wayne.png"/>
     &lt;p class="heading">Bruce Wayne&lt;/p>
 &lt;/div></code></pre>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
 
-        <h3>JQuery</h3>
-
         <div class="row">
             <div class="demo demo--code col-xs-12">
 
-<pre><code>var DemoJQ = DemoJQ;
+<pre><code>/** JQuery */
+
+var DemoJQ = DemoJQ;
 
 $.extend(DemoJQ.prototype, {
     heading: 'Batman via $.onClick'

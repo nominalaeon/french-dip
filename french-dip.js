@@ -6,7 +6,7 @@
 
   /**
    * 
-   * A flexible, light-weight framework for creating components
+   * A flexible, light-weight module for creating custom components
    *
    * @module french-dip
    *
