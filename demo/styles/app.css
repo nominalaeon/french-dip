@@ -6491,7 +6491,11 @@ h4 {
 .btn-primary-outline {
   border-color: #f9d467;
   color: #f9d467;
+}
+.btn-primary,
+.btn-primary-outline {
   margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 .btn-primary:hover,
 .btn-primary-outline:hover {
