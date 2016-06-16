@@ -69,7 +69,7 @@
   }
 
   function _getFrenchDipComponents() {
-    var fdEls = document.querySelectorAll('[frenchdip]');
+    var fdEls = document.querySelectorAll('[data-frenchdip]');
     var fdComponents = {};
 
     Array.prototype.forEach.call(fdEls, _getComponentAttrs);
@@ -77,7 +77,7 @@
     return fdComponents;
 
     function _getComponentAttrs(fdEl) {
-      var attrs = fdEl.getAttribute('frenchdip').split(' ');
+      var attrs = fdEl.getAttribute('data-frenchdip').split(' ');
       var name = attrs[0];
       var selector = attrs[1];
 
