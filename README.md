@@ -6,7 +6,7 @@ A flexible, light-weight module for creating custom components
 
 [http://nominalaeon.github.io/french-dip/](http://nominalaeon.github.io/french-dip/)
 
-## Contributing
+## Contributor Guidelines
 
 ### Submitting issues
 
@@ -29,7 +29,7 @@ You must provide a clear and simple way to reproduce the issue with the provided
 
 *Please note that while FrenchDip is open source, this is still my baby, and by submitting a pull request you are authorizing me to edit or modify it in any way shape or form. You will be listed in Github as a contributor, but I have and will continue to steer the direction of this project.*
 
-> Thanks to [Ken Wheeler](http://kenwheeler.github.io/) for letting me steal his contributor guidelines!
+> <small><i>Contributor guidelines courtesy of [Ken Wheeler](http://kenwheeler.github.io/)</i></small>
 
 ## License
 
