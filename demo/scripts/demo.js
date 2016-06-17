@@ -50,7 +50,7 @@
 		}
 	};
 
-	DemoJS.name = 'DemoJS';
+	DemoJS.prototype.name = 'DemoJS';
 
 	FrenchDip.register(DemoJS); // Register DemoJS Class with FrenchDip
 
