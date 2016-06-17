@@ -18,7 +18,7 @@
 
     'use strict';
 
-    var _Components = [];
+    var _Components = {};
     var errors = [];
 
     if (!Array.prototype.includes) {
@@ -74,7 +74,15 @@
         _logErrors();
     }
 
-    function register(name, Component) {
+    function register(Component, name) {
+        if (!name && !Component.name) {
+            return errors.push('Could not register unnamed Component');
+        }
+
+        if (!name) {
+            name = Component.name;
+        }
+
         _Components[name] = Component;
     }
 
@@ -129,30 +137,6 @@
         });
 
         return instanceOptions;
-    }
-
-    function _parseName(thing) {
-        var typeOfThing = typeof thing;
-        if (typeOfThing === 'object') {
-            typeOfThing = Object.prototype.toString.call(thing);
-            if (typeOfThing === '[object Object]') {
-                if (thing.constructor.name) {
-                    return thing.constructor.name;
-                } else if (thing.constructor.toString().charAt(0) === '[') {
-                    typeOfThing = typeOfThing.substring(8, typeOfThing.length - 1);
-                } else {
-                    typeOfThing = thing.constructor.toString().match(/function\s*(\w+)/);
-                    if (typeOfThing) {
-                        return typeOfThing[1];
-                    } else {
-                        return 'Function';
-                    }
-                }
-            } else {
-                typeOfThing = typeOfThing.substring(8, typeOfThing.length - 1);
-            }
-        }
-        return typeOfThing.charAt(0).toUpperCase() + typeOfThing.slice(1);
     }
 
     /**
