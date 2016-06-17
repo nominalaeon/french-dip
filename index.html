@@ -98,7 +98,7 @@
 
                         <div class="col-md-6 col-xs-12" style="padding: 0; overflow-x: auto;">
                             <p><b>HTML</b><br/>
-                            Use the "data-frenchdip" attribute to declare the JavaScript Class to be invoked and then the HTML classname it affects.</p>
+                            Use the "data-frenchdip" attribute to request the JavaScript Class that needs to be invoked for an element.</p>
 <pre><code class="html">&lt;p>Displays two different numbers&lt;/p>
 
 &lt;div class="your-class-name"
@@ -112,13 +112,18 @@
                             <p><b>JavaScript</b><br/>
                             Create a JavaScript Class and register it with FrenchDip, provide the Class itself and then its name as a string.</p>
 <pre><code class="javascript">function YourClass() {
+    // this.root - node tied to an instance
+    // this.options - node's data-attr values
     this.root.innerHTML = Math.random();
 }
 
-FrenchDip.register(YourClass, 'YourClass');</code></pre>
+FrenchDip.register(YourClass, 'YourClass');
+</code></pre>
                         </div>
 
-                        <p>FrenchDipJS collects registered DOM elements, forEach's through them, and invokes a new instance of your class for each one.</p>
+                        <p>FrenchDipJS collects registered DOM elements, forEach's through them, and invokes a new instance of the requested Class for each one.</p>
+
+                        <p><b>If the name property is set on a registered component, the string form isn’t required as a second argument for FrenchDip.register(YourClass). If the name property is not set, FrenchDip requires the name as a string FrenchDip.register(YourClass, 'YourClass').</b></p>
                     </div>
                 </div>
 
