@@ -11,20 +11,23 @@
      * @module french-dip
      *
      * @name FrenchDipJS
-     * @version 0.0.2
+     * @version 0.1.0
      * @License MIT License
      * 
      */
 
     'use strict';
 
+    var _Components = [];
     var errors = [];
-
-    root.FrenchDip = FrenchDip;
 
     if (!Array.prototype.includes) {
         _includesPolyfill();
     }
+
+    root.FrenchDip = {
+        register: register
+    };
 
     _onDomReady(initializeComponents);
 
@@ -55,23 +58,27 @@
      * DOM-Ready function that envokes the user's Classes
      */
     function initializeComponents() {
-        var components = _getFrenchDipComponents();
+        var components = _getComponents();
 
         // Initialize FrenchDip'ed Components
         components.forEach(function (name) {
             let selector = '[data-frenchdip="' + name + '"]';
 
-            if (typeof FrenchDip[name] !== 'function') {
+            if (typeof _Components[name] !== 'function') {
                 return errors.push(name);
             }
 
-            new FrenchDip(selector, {}, FrenchDip[name]);
+            new FrenchDip(selector, {}, _Components[name]);
         });
 
         _logErrors();
     }
 
-    function _getFrenchDipComponents() {
+    function register(name, Component) {
+        _Components[name] = Component;
+    }
+
+    function _getComponents() {
         var fdEls = document.querySelectorAll('[data-frenchdip]');
         var fdComponents = [];
 
@@ -116,11 +123,41 @@
         var instanceOptions = {};
 
         Object.keys(el.dataset).forEach(function (key) {
-            instanceOptions[key] = el.dataset[key];
+            if (key !== 'frenchdip') {
+                instanceOptions[key] = el.dataset[key];
+            }
         });
 
         return instanceOptions;
     }
+
+    function _parseName(thing) {
+        var typeOfThing = typeof thing;
+        if (typeOfThing === 'object') {
+            typeOfThing = Object.prototype.toString.call(thing);
+            if (typeOfThing === '[object Object]') {
+                if (thing.constructor.name) {
+                    return thing.constructor.name;
+                } else if (thing.constructor.toString().charAt(0) === '[') {
+                    typeOfThing = typeOfThing.substring(8, typeOfThing.length - 1);
+                } else {
+                    typeOfThing = thing.constructor.toString().match(/function\s*(\w+)/);
+                    if (typeOfThing) {
+                        return typeOfThing[1];
+                    } else {
+                        return 'Function';
+                    }
+                }
+            } else {
+                typeOfThing = typeOfThing.substring(8, typeOfThing.length - 1);
+            }
+        }
+        return typeOfThing.charAt(0).toUpperCase() + typeOfThing.slice(1);
+    }
+
+    /**
+     * Polyfills
+     */
 
     function _includesPolyfill() {
         Array.prototype.includes = function (searchElement /*, fromIndex*/ ) {

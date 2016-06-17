@@ -7,7 +7,7 @@
 	    this.root.innerHTML = Math.random();
 	}
 
-	FrenchDip.YourClass = YourClass;
+	FrenchDip.register('YourClass', YourClass);
 })();
 
 
@@ -50,7 +50,7 @@
 		}
 	};
 
-	FrenchDip.DemoJS = DemoJS; // Register DemoJS Class with FrenchDip
+	FrenchDip.register('DemoJS', DemoJS); // Register DemoJS Class with FrenchDip
 
 })();
 
@@ -79,7 +79,7 @@
 		}
 	}
 
-	FrenchDip.DemoES6 = DemoES6; // Register DemoES6 Class with FrenchDip
+	FrenchDip.register('DemoES6', DemoES6); // Register DemoES6 Class with FrenchDip
 
 })();
 
@@ -97,7 +97,7 @@
 		heading: 'Batman via $.onClick'
 	});
 
-	FrenchDip.DemoJQ = DemoJQ; // Register DemoJQ Class with FrenchDip
+	FrenchDip.register('DemoJQ', DemoJQ); // Register DemoJQ Class with FrenchDip
 
 	function DemoJQ() {
 		this.$root = $(this.root);
