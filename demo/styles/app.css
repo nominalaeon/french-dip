@@ -6530,6 +6530,9 @@ pre {
 .hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-doctag, .hljs-title, .hljs-section, .hljs-type, .hljs-selector-id {
   font-weight: 200;
 }
+.demo pre {
+  margin: 0;
+}
 .demo .media-left {
   padding: .4rem 0;
   text-align: center;
