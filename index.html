@@ -41,7 +41,7 @@
     <div class="jumbotron">
         <div class="container">
             <div class="row">
-                <div class="col-xl-6 col-xl-offset-3 col-lg-8 col-lg-offset-2 ol-xs-12" style="padding: 0;">
+                <div class="col-lg-8 col-lg-offset-2 ol-xs-12" style="padding: 0;">
                     <h1 class="display-4 hidden-sm-down">FrenchDipJS</h1>
                     <h1 class="display-1 hidden-md-up hidden-xs-down">FrenchDipJS</h1>
                     <h1 class="hidden-sm-up">FrenchDipJS</h1>
@@ -63,7 +63,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-xl-6 col-xl-offset-3 col-lg-8 col-lg-offset-2 ol-xs-12" style="padding: 0; overflow-x: auto;">
+            <div class="col-lg-8 col-lg-offset-2 col-xs-12" style="padding: 0; overflow-x: auto;">
 
                 <p class="lead">Not every project needs the full arsenal of a front-end framework.</p>
 
@@ -110,12 +110,12 @@
 
                         <div class="col-md-6 col-xs-12" style="padding-right: 0; overflow-x: auto;">
                             <p><b>JavaScript</b><br/>
-                            Create a JavaScript Class and assign it to the global FrenchDip object to register it with FrenchDipJS.</p>
+                            Create a JavaScript Class and register it with FrenchDip, provide the Class itself and then its name as a string.</p>
 <pre><code class="javascript">function YourClass() {
     this.root.innerHTML = Math.random();
 }
 
-FrenchDip.YourClass = YourClass;</code></pre>
+FrenchDip.register(YourClass, 'YourClass');</code></pre>
                         </div>
 
                         <p>FrenchDipJS collects registered DOM elements, forEach's through them, and invokes a new instance of your class for each one.</p>
@@ -237,7 +237,7 @@ function DemoJS() {
 }
 
 /** Register Class with FrenchDipJS */
-FrenchDip.DemoJS = DemoJS;</code></pre>
+FrenchDip.register(DemoJS, 'DemoJS');</code></pre>
 
             </div>
         </div>
@@ -314,7 +314,7 @@ class DemoES6 {
 }
 
 /** Register Class with FrenchDipJS */
-FrenchDip.DemoES6 = DemoES6;</code></pre>
+FrenchDip.register(DemoES6, 'DemoES6');</code></pre>
 
             </div>
         </div>
@@ -357,7 +357,7 @@ $.extend(DemoJQ.prototype, {
 });
 
 /** Register Class with FrenchDipJS */
-FrenchDip.DemoJQ = DemoJQ; // Register DemoJQ Class with FrenchDip
+FrenchDip.register(DemoJQ, 'DemoJQ'); // Register DemoJQ Class with FrenchDip
 
 function DemoJQ() {
     this.$root = $(this.root);
