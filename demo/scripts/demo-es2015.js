@@ -1,9 +1,3 @@
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 /*=========================================
 =            YourClass Example            =
 =========================================*/
@@ -16,6 +10,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     FrenchDip.register(YourClass, 'YourClass');
 })();
 
+
 /*==========================================
 =            Vanilla JS Example            =
 ==========================================*/
@@ -24,13 +19,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     'use strict';
 
-    var DemoJS = function DemoJS() {
+    var DemoJS = function () {
         var heading = this.root.querySelectorAll('.heading')[0],
-            img = this.root.querySelectorAll('img')[0],
-            newHead = this.options.heading,
-            newSrc = this.options.newSrc,
-            oldHead,
-            oldSrc;
+        img = this.root.querySelectorAll('img')[0],
+        newHead = this.options.heading,
+        newSrc = this.options.newSrc,
+        oldHead, oldSrc;
 
         if (this.options.interval) {
             runInterval(this.options.interval);
@@ -59,6 +53,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     DemoJS.prototype.name = 'DemoJS';
 
     FrenchDip.register(DemoJS); // Register DemoJS Class with FrenchDip
+
 })();
 
 /*===================================
@@ -69,35 +64,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     'use strict';
 
-    var DemoES2015 = function () {
-        function DemoES2015() {
-            var _this = this;
-
-            _classCallCheck(this, DemoES2015);
-
+    class DemoES2015 {
+        constructor() {
             this.name = 'DemoES2015'; //publically provides the name of the Class
 
             this.heading = this.root.querySelectorAll('.heading')[0];
             this.img = this.root.querySelectorAll('img')[0];
             this.options = this.options;
 
-            setTimeout(function () {
-                _this.swapAssets();
+            setTimeout(() => {
+                this.swapAssets();
             }, 1000);
         }
 
-        _createClass(DemoES2015, [{
-            key: 'swapAssets',
-            value: function swapAssets() {
-                this.heading.innerHTML = this.options.heading;
-                this.img.setAttribute('src', this.options.newSrc);
-            }
-        }]);
-
-        return DemoES2015;
-    }();
+        swapAssets() {
+            this.heading.innerHTML = this.options.heading;
+            this.img.setAttribute('src', this.options.newSrc);
+        }
+    }
 
     FrenchDip.register(DemoES2015); // Register DemoES2015 Class with FrenchDip
+
 })();
 
 /*======================================
@@ -129,4 +116,5 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.$img.attr('src', this.options.newSrc);
         this.$root.off();
     }
+
 })();
