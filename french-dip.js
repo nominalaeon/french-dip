@@ -1,9 +1,6 @@
 (function (root, factory) {
-
     return factory(root);
-
 })(this, function (root) {
-
     /**
      * 
      * A flexible, light-weight module for creating custom components
@@ -15,22 +12,16 @@
      * @License MIT License
      * 
      */
-
     'use strict';
-
     var _Components = {};
     var errors = [];
-
     if (!Array.prototype.includes) {
         _includesPolyfill();
     }
-
     root.FrenchDip = {
         register: register
     };
-
     _onDomReady(initializeComponents);
-
     /**
      * Constructs a new instance of the user's Classes for each instance of a Class's defined selector
      * @class
@@ -41,84 +32,62 @@
      */
     function FrenchDip(selector, options, Component) {
         var elements = document.querySelectorAll(selector);
-
         Array.prototype.forEach.call(elements, initComponent);
-
         function initComponent(el) {
             var instanceOptions = Object.assign({}, options, _parseInstanceOptions(el, options));
-
             Component.prototype.root = el;
             Component.prototype.options = instanceOptions;
-
             new Component();
         }
     }
-
     /**
      * DOM-Ready function that envokes the user's Classes
      */
     function initializeComponents() {
         var components = _getComponents();
-
         // Initialize FrenchDip'ed Components
         components.forEach(function (name) {
-            let selector = '[data-frenchdip="' + name + '"]';
-
+            var selector = '[data-frenchdip="' + name + '"]';
             if (typeof _Components[name] !== 'function') {
                 return errors.push(name);
             }
-
             new FrenchDip(selector, {}, _Components[name]);
         });
-
         _logErrors();
     }
-
     function register(Component, name) {
         if (!name && !Component.name) {
             return errors.push('Could not register unnamed Component');
         }
-
         if (!name) {
             name = Component.name;
         }
-
         _Components[name] = Component;
     }
-
     function _getComponents() {
         var fdEls = document.querySelectorAll('[data-frenchdip]');
         var fdComponents = [];
-
         Array.prototype.forEach.call(fdEls, _getComponentName);
-
         return fdComponents;
-
         function _getComponentName(fdEl) {
             var name = fdEl.getAttribute('data-frenchdip');
-
             if (!name || !name.length) {
                 return errors.push(name);
             }
-
             if (!fdComponents.includes(name)) {
                 fdComponents.push(name);
             }
         }
     }
-
     function _logErrors() {
         if (!errors.length) {
             return;
         }
-
         Array.prototype.forEach.call(errors, carpErrors);
-
         function carpErrors(err) {
             console.warn('%s Component failed to load.', err);
         }
     }
-
     function _onDomReady(fn) {
         if (document.readyState !== 'loading') {
             fn();
@@ -126,25 +95,20 @@
             document.addEventListener('DOMContentLoaded', fn);
         }
     }
-
     function _parseInstanceOptions(el, defaultOptions) {
         var instanceOptions = {};
-
         Object.keys(el.dataset).forEach(function (key) {
             if (key !== 'frenchdip') {
                 instanceOptions[key] = el.dataset[key];
             }
         });
-
         return instanceOptions;
     }
-
     /**
      * Polyfills
      */
-
     function _includesPolyfill() {
-        Array.prototype.includes = function (searchElement /*, fromIndex*/ ) {
+        Array.prototype.includes = function (searchElement /*, fromIndex*/) {
             'use strict';
             var O = Object(this);
             var len = parseInt(O.length, 10) || 0;
@@ -164,7 +128,8 @@
             var currentElement;
             while (k < len) {
                 currentElement = O[k];
-                if (searchElement === currentElement) { // NaN !== NaN
+                if (searchElement === currentElement) {
+                    // NaN !== NaN
                     return true;
                 }
                 k++;
@@ -172,5 +137,4 @@
             return false;
         };
     }
-
 });
