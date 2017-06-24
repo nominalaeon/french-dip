@@ -15,9 +15,14 @@
     'use strict';
     var _Components = {};
     var errors = [];
+    
     if (!Array.prototype.includes) {
         _includesPolyfill();
     }
+    if (!Object.assign || typeof Object.assign != 'function') {
+        _assignPolyfill();
+    }
+
     root.FrenchDip = {
         register: register
     };
@@ -97,6 +102,11 @@
     }
     function _parseInstanceOptions(el, defaultOptions) {
         var instanceOptions = {};
+
+        if (typeof el.dataset !== 'object') {
+            return instanceOptions;
+        }
+
         Object.keys(el.dataset).forEach(function (key) {
             if (key !== 'frenchdip') {
                 instanceOptions[key] = el.dataset[key];
@@ -107,6 +117,31 @@
     /**
      * Polyfills
      */
+    function _assignPolyfill() {
+        Object.assign = function (target, varArgs) { // .length of function is 2
+            'use strict';
+            if (target == null) { // TypeError if undefined or null
+                throw new TypeError('Cannot convert undefined or null to object');
+            }
+
+            var to = Object(target);
+
+            for (var index = 1; index < arguments.length; index++) {
+                var nextSource = arguments[index];
+
+                if (nextSource != null) { // Skip over if undefined or null
+                    for (var nextKey in nextSource) {
+                        // Avoid bugs when hasOwnProperty is shadowed
+                        if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                            to[nextKey] = nextSource[nextKey];
+                        }
+                    }
+                }
+            }
+            return to;
+        };
+    }
+
     function _includesPolyfill() {
         Array.prototype.includes = function (searchElement /*, fromIndex*/) {
             'use strict';
