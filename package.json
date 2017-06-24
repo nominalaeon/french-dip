@@ -1,7 +1,7 @@
 {
   "name": "french-dip",
   "description": "A flexible, light-weight module for creating custom components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://nominalaeon.github.io/french-dip",
   "author": {
     "name": "Noah Rodenbeek",
