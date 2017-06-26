@@ -1,6 +1,15 @@
 (function (root, factory) {
-    return factory(root);
-})(this, function (root) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['exports', 'b'], factory);
+    } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
+        // CommonJS
+        factory(exports, require('b'));
+    } else {
+        // Browser globals
+        factory((root.commonJsStrict = {}), root.b);
+    }
+}(this, function (root) {
     /**
      * 
      * A flexible, light-weight module for creating custom components
@@ -172,4 +181,4 @@
             return false;
         };
     }
-});
+}));

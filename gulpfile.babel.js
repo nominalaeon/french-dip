@@ -24,6 +24,12 @@ import uglify       from 'gulp-uglify';
 import pump   from 'pump';
 import rename from 'gulp-rename';
 
+var options = {
+  browsers: [
+    'last 2 version',
+  ]
+};
+
 gulp.task('clean', () => {
   return gulp.src([
       'french-dip.min.js'
@@ -36,6 +42,9 @@ gulp.task('clean', () => {
 gulp.task('uglify', (cb) => {
   pump([
     gulp.src('french-dip.js'),
+    babel({
+        presets: ['es2015']
+    }),
     uglify({
       outSourceMap: true
     }),
