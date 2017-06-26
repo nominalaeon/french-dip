@@ -1,7 +1,3 @@
-/*!
- * Endless Aisle Gulpfile
- * @author VML
- */
 
 'use strict';
 
