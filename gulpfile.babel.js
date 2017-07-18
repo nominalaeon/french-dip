@@ -22,7 +22,7 @@ import rename from 'gulp-rename';
 
 var options = {
   browsers: [
-    'last 2 version',
+    'last 4 version',
   ]
 };
 
@@ -35,14 +35,21 @@ gulp.task('clean', () => {
     .pipe(clean());
 });
 
-gulp.task('uglify', (cb) => {
+gulp.task('uglify:demo', (cb) => {
+  pump([
+    gulp.src('./demo/scripts/demo-es2015.js'),
+    babel({
+        presets: ['es2015']
+    }),
+    rename('demo.js'),
+    gulp.dest('./demo/scripts')
+  ], cb);
+});
+gulp.task('uglify:french-dip', (cb) => {
   pump([
     gulp.src('french-dip.js'),
     babel({
         presets: ['es2015']
-    }),
-    uglify({
-      outSourceMap: true
     }),
     rename('french-dip.min.js'),
     gulp.dest('.')
@@ -51,5 +58,6 @@ gulp.task('uglify', (cb) => {
 
 gulp.task('default', [
   'clean',
-  'uglify'
+  'uglify:demo',
+  'uglify:french-dip'
 ]);
