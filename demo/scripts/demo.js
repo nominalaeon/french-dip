@@ -9,6 +9,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 =========================================*/
 
 (function () {
+
+    'use strict';
+
     function YourClass() {
         this.root.innerHTML = Math.random();
     }

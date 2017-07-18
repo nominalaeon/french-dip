@@ -3,6 +3,9 @@
 =========================================*/
 
 (function () {
+
+    'use strict';
+
     function YourClass() {
         this.root.innerHTML = Math.random();
     }
