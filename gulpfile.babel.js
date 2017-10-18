@@ -49,7 +49,7 @@ gulp.task('uglify:french-dip', (cb) => {
   pump([
     gulp.src('french-dip.js'),
     babel({
-        presets: ['es2015']
+        presets: ['es2015-ie']
     }),
     rename('french-dip.min.js'),
     gulp.dest('.')

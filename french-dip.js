@@ -1,14 +1,5 @@
-(function(root, factory) {
-  'use strict';
 
-  if (typeof define === 'function' && define.amd) {
-    define(['exports'], factory);
-  } else if (typeof exports !== 'undefined') {
-    module.exports = factory(exports);
-  } else {
-    factory(root || {});
-  }
-}(this, function(root) {
+(function () {
   /**
    * 
    * A flexible, light-weight module for creating custom components
@@ -16,22 +7,24 @@
    * @module french-dip
    *
    * @name FrenchDipJS
-   * @version 0.1.1
+   * @version 0.1.4
    * @License MIT License
    * 
    */
   'use strict';
+
   var _Components = {};
   var errors = [];
 
   if (!Array.prototype.includes) {
     _includesPolyfill();
   }
+
   if (!Object.assign || typeof Object.assign != 'function') {
     _assignPolyfill();
   }
 
-  root.FrenchDip = {
+  window.FrenchDip = {
     register: register
   };
 
@@ -51,8 +44,10 @@
 
     function initComponent(el) {
       var instanceOptions = Object.assign({}, options, _parseInstanceOptions(el, options));
+      
       Component.prototype.root = el;
       Component.prototype.options = instanceOptions;
+      
       new Component();
     }
   }
@@ -65,9 +60,11 @@
     // Initialize FrenchDip'ed Components
     components.forEach(function(name) {
       var selector = '[data-frenchdip="' + name + '"]';
+
       if (typeof _Components[name] !== 'function') {
         return errors.push(name);
       }
+      
       new FrenchDip(selector, {}, _Components[name]);
     });
     _logErrors();
@@ -192,4 +189,4 @@
       return false;
     };
   }
-}));
+})();
