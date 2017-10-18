@@ -1,7 +1,7 @@
 {
   "name": "french-dip",
   "description": "A flexible, light-weight module for creating custom components",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://nominalaeon.github.io/french-dip",
   "author": {
     "name": "Noah Rodenbeek",
@@ -29,6 +29,7 @@
   "devDependencies": {
     "babel-core": "^6.13.2",
     "babel-preset-es2015": "^6.24.0",
+    "babel-preset-es2015-ie": "^6.7.0",
     "babel-register": "^6.11.6",
     "gulp": "^3.9.1",
     "gulp-add-src": "^0.2.0",
